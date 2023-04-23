@@ -1,0 +1,8 @@
+T(n) = a*T(n/b)+c*(n^k)
+n = b^m
+if a < b^k:
+    O(n^k)
+if a = b^k:
+    O(m*a^m)
+if a > b^k:
+    O(a^m)
