@@ -7,30 +7,55 @@ typedef struct Node{
 }Node;
 
 int main(){
-    Node *one = NULL;
-    one = (Node*)malloc(sizeof(Node));
-    one->data = 3;
-    one->next = NULL;
-    Node *head = one;
-    Node *tail = one;
-    int len = 0;
-    printf("Enter length of linked list to be created initially: ");
-    scanf("%d", &len);
-    for(int i = 0; i < len; i++){
-        int element = 0;
-        printf("Enter element: ");
-        scanf("%d", &element);
+
+    int n,q;
+    scanf("%d %d", &n, &q);
+    Node *head = NULL;
+    head = (Node*)malloc(sizeof(Node));
+    head->data = 0;
+    head->next = NULL;
+    Node *tail = NULL;
+    tail = (Node*)malloc(sizeof(Node));
+    tail = head;
+    head->next = tail;
+    for(int i = 0; i < n; i++){
         Node *temp = NULL;
         temp = (Node*)malloc(sizeof(Node));
-        temp->data = element;
+        scanf("%d", &(temp->data));
         temp->next = NULL;
         tail->next = temp;
         tail = temp;
     }
-    Node *temp = head;
-    for(int i = 0; i < len+1; i++){
+
+    int count = 1;
+
+    while(count){
+        count--;
+        int k = 2;
+        Node *temp1 = NULL;
+        temp1 = (Node*)malloc(sizeof(Node));
+        temp1 = head->next;
+        Node *prev = NULL;
+        prev = (Node*)malloc(sizeof(Node));
+        prev = head;
+        for(int i = 0; i < k-1; i ++){
+            temp1 = temp1->next;
+            prev = prev->next;
+        }
+        prev->next = (temp1->next);
+        free(temp1);
+    }
+
+    //     PRINT
+    Node *temp = NULL;
+    temp = (Node*)malloc(sizeof(Node));
+    temp = head->next;
+    for(int i = 0; i < n; i++){
         printf("%d ", temp->data);
         temp = temp->next;
     }
+    
+
+
     return 0;
 }
